@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import ProductDetail from './pages/ProductDetail';
 
 import './App.css';
+import './assets/css/setting.css';
 
 function App() {
   return (

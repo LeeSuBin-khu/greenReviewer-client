@@ -1,0 +1,22 @@
+/* review */
+.review {
+    gap: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    padding-bottom: 23.48px;
+    width: 1044px;
+    margin-top: 40px;
+}
+
+.review-image-name {
+    gap: 15px;
+}
+
+.review-review-type {
+    gap: 50px;
+    margin-top: 7px;
+}
+
+/* reviewInput */

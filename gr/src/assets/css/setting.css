@@ -1,0 +1,25 @@
+/* flex */
+.flex-row {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-15 {
+    font-size: 15px;
+}
+
+.font-13 {
+    font-size: 13px;
+}
+
+.color-green {
+    color: #195B3F;
+}
