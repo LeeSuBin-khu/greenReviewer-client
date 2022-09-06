@@ -20,3 +20,50 @@
 }
 
 /* reviewInput */
+.reviewInput-review {
+    position: relative;
+}
+
+.reviewInput-review-input {
+    box-sizing: border-box;
+    width: 300px;
+    height: 50px;
+    border: 1px solid #195B3F;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-top: 100px;
+}
+
+.reviewInput-review-button {
+    position: absolute;
+    left: 1000px;
+    top: 120px;
+    width: 100px;
+    height: 40px;
+    background: #195B3F;
+    border-radius: 60px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+.reviewModal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewModal {
+    width: 400px;
+    height: 500px;
+    border-radius: 30px;
+    background-color: white;
+}

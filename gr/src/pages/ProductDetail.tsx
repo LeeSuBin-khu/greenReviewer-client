@@ -8,9 +8,6 @@ const ProductDetail = (): JSX.Element => {
     return (
         <div>
             <Review />
-            <Review />
-            <Review />
-            <Review />
         </div>
     );
 };

@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ReviewInput from "./ReviewInput";
+import ReviewModal from "./ReviewModal";
 
 import defaultProfile from "../../assets/svg/default_profile.svg";
 import star5 from "../../assets/svg/star5.svg";
 
 const Review = (): JSX.Element => {
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
-        <>
+        <div style={{marginTop: '100px'}}>
+        <div className="font-30">Review</div>
         <div className="review flex-col">
             <div className="review-image-name flex-row">
                 <div className="review-image"><img src={defaultProfile}/></div>
                 <div className="flex-col">
                     <div className="review-name-review flex-col">
                         <div className="font-18">이름</div>
-                        <div><img src={star5}/></div>
+                        {/* <div><img src={star5}/></div> */}
                         <div className="review-review-type flex-col">
                             <div className="review-type font-13 color-green">증거 불충분 | 부적절한 인증 라벨</div>
                             <div className="review-review font-15">증거가 부족한 것 같아요 ....</div>
@@ -23,8 +27,9 @@ const Review = (): JSX.Element => {
                 </div>
             </div>
         </div>
-        {/* <ReviewInput /> */}
-        </>
+            <ReviewInput modalOpen={modalOpen} setModalOpen={setModalOpen} />
+            <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        </div>
     );
 };
 
