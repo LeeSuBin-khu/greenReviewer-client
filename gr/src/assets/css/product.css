@@ -1,0 +1,183 @@
+/* 지워도 되는 파일 */
+
+.main-container,
+.product-detail-container {
+  margin: 0px 240px;
+}
+
+.flex {
+  display: flex;
+}
+
+.product {
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.product-card {
+  /* width: 353px; */
+  width: 350px;
+  height: 387px;
+  margin: 50px 20px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.product-card-img img {
+  width: 100%;
+  height: 260px;
+  border-radius: 15px 15px 0 0;
+}
+
+.product-card-ex {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card-name {
+  width: 100%;
+  height: 60px;
+}
+
+.product-card-price {
+  font-size: 1.5rem;
+  width: 60%;
+}
+
+.product-card-eco {
+  margin-top: 10px;
+  text-align: right;
+  width: 40%;
+  height: 20px;
+}
+
+.eco-0 {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.eco-1 {
+  color: rgb(255, 0, 0);
+}
+
+.eco-2 {
+  color: #ff9e9e;
+}
+.eco-3 {
+  color: #bdd2a8;
+}
+.eco-4 {
+  color: #195b3f;
+}
+
+.header-container {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  padding: 1rem;
+}
+
+.search-input {
+  height: 25px;
+  width: 500px;
+  margin-left: 8rem;
+  margin-top: 0.6rem;
+}
+
+.product-table {
+  margin-top: 5rem;
+  width: 100%;
+}
+
+.card-tbody {
+  height: 180px;
+}
+
+.card-thumb {
+  width: 30%;
+}
+
+.card-thumb img {
+  width: 220px;
+  height: 150px;
+}
+
+.product-detail-card {
+  margin-top: 5rem;
+  width: 100%;
+  height: 600px;
+}
+
+.product-detail-card img {
+  width: 100%;
+  height: 500px;
+}
+
+.product-detail-thumb {
+  float: left;
+  width: 45%;
+}
+
+.product-detail-name,
+.product-detail-vendor,
+.product-detail-price,
+.product-detail-delivery,
+.product-detail-review,
+.product-detail-btn {
+  float: right;
+  width: 55%;
+}
+
+.product-detail-name p {
+  font-size: 2.5rem;
+  margin: 0 0 0 100px;
+}
+
+.product-detail-vendor p {
+  margin: 0 0 0 104px;
+  color: rgb(150, 150, 150);
+}
+
+.product-detail-review p {
+  margin: 5px 0 0 104px;
+  color: rgb(0, 154, 79);
+}
+
+.product-detail-price p {
+  font-size: 1.6rem;
+  margin: 15px 0 0 104px;
+  color: rgb(157, 189, 110);
+}
+
+.product-detail-delivery p {
+  font-size: 1.25rem;
+  margin: 150px 0 0 104px;
+}
+
+.product-detail-buybtn {
+  margin: 40px 0 0 104px;
+  width: 260px;
+  height: 50px;
+  font-size: 1.25rem;
+  color: rgb(255, 255, 255);
+  background-color: #bdd2a8;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-detail-reviewbtn {
+  margin: 0 0 0 50px;
+  width: 260px;
+  height: 50px;
+  font-size: 1.25rem;
+  color: #bdd2a8;
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #bdd2a8;
+  border-radius: 5px;
+  cursor: pointer;
+}
