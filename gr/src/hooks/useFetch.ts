@@ -1,11 +1,21 @@
-import axios from "axios";
-import { useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 
+interface Data {
+    id: string,
+    name: string
+}
 
+export const useFetch = (url: string) => {
+    const [data, setData] = useState<Data []>([]);
 
-// export const useFetch = (url: string): AxiosResponse => {
-//     const [data, setData] = useState();
-//     const response = axios.get(`${process.env.REACT_APP_SERVER_HOST}/${url}`);
-//     setData(response.data);
-//     return data;
-// }
+    useEffect( () => {
+        const fetchApi = async () => {
+            const response: AxiosResponse<any> = await axios.get(`/${url}`);
+            setData(response.data);
+       }
+       fetchApi();
+    }, [])
+    
+    return data;
+}

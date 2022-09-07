@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, Dispatch, SetStateAction, ChangeEvent } from "react";
 import axios from "axios";
 
-import { setTypeId } from "../../utils/setTypeId";
+import { useFetch } from "../../hooks/useFetch";
 
 interface propsType {
     modalOpen : boolean;
@@ -15,7 +15,9 @@ type TypeInput = ({ target }: ChangeEvent) => void;
 const ReviewModal = (props: propsType): JSX.Element => {
     const [types, setTypes] = useState<number []>([]);
     const [review, setReview] = useState<string>("");
+    const typeList = useFetch("checklists");
     const modalRef = useRef<HTMLDivElement>(null);
+    const typeRef = useRef<HTMLInputElement []>([]);
     const { modalOpen, setModalOpen } = props;
 
     const modalClose: ModalClose = ({ target }) => {
@@ -30,22 +32,29 @@ const ReviewModal = (props: propsType): JSX.Element => {
     }, [modalOpen] )
 
     const postClickHandler = () => {
-        const response = axios.post(`${process.env.REACT_APP_SERVER_HOST}/review/write`, {
-            "productId" : 1,
-            "content" : review,
-            "nickname" : "이름",
-            "checkTypes" : types,
-            "rate" : 4.0
-        });
-        //setModalOpen(false);
+        if(review !== "") {
+            const response = axios.post(`/review/write`, {
+                "productId" : 1,
+                "content" : review,
+                "nickname" : "이름",
+                "checkTypes" : types
+            });
+            setModalOpen(false);
+        } else {
+            alert("리뷰를 입력해주세요.");
+        }
     }
 
     const reviewChangeHandler: ReviewInput = ({ target }) => {
         setReview((target as HTMLInputElement).value);
     }
 
-    const typeChangeHandler: TypeInput = ({ target }) => {
-        console.log((target as HTMLInputElement).value);
+    const typeChangeHandler: TypeInput = () => {
+        const tempList: number [] = [];
+        typeRef.current.map( type => {
+            type.checked && tempList.push(parseInt(type.value));
+        })
+        setTypes(tempList);
     }
 
     return (
@@ -53,12 +62,11 @@ const ReviewModal = (props: propsType): JSX.Element => {
         {modalOpen ? 
         <div className="reviewModal-bg">
             <div className="reviewModal" ref={modalRef}>
-                <div>
-                    <label><input type="checkbox" onChange={typeChangeHandler} value="증거 불충분"/>증거 불충분</label>
-                    <label><input type="checkbox" value="애매모호한 주장"/>애매모호한 주장</label>
-                    <label><input type="checkbox" value="거짓말"/>거짓말</label>
-                    <label><input type="checkbox" value="부적절한 인증 라벨"/>부적절한 인증 라벨</label>
+                {typeList.map( (type, key) => 
+                <div key={key}>
+                    <label><input ref={ type => (typeRef.current[key] = type as HTMLInputElement) } type="checkbox" onChange={typeChangeHandler} value={type.id} />{type.name}</label>
                 </div>
+                )}
                 <div>
                     <input className="reviewInput-review-input" onChange={reviewChangeHandler} placeholder="리뷰를 입력해주세요."/>
                 </div>
