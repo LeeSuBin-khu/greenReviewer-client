@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { DUMMY_LIST } from "../components/product/ProductList";
+import { useParams } from "react-router-dom";
+
 import Review from "../components/review/Review";
 import Header from "../components/layout/Header";
 import "../assets/css/review.css";
