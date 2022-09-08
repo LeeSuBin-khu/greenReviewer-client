@@ -17,7 +17,7 @@ const ProductList: React.FC = () => {
       await axios
         .get("/product/list", {
           params: {
-            q: "파우치",
+            q: "",
             page: 1,
             size: 10,
           },

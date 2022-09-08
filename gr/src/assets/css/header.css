@@ -7,10 +7,9 @@
 
 .search-input {
   height: 15px;
-  width: 800px;
+  width: 700px;
   padding: 10px;
   -webkit-appearance: none;
-  margin-left: 8rem;
   margin-top: 0.2rem;
   border-top-width: 0;
   border-left-width: 0;
@@ -34,10 +33,10 @@
   align-items: center;
 }
 
-/* .header-input img {
+.header-input img {
   position: absolute;
-  right: 28%;
+  right: 21%;
   filter: invert(26%) sepia(49%) saturate(596%) hue-rotate(103deg)
     brightness(93%) contrast(91%);
   cursor: pointer;
-} */
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import Review from "../components/review/Review";
 import Header from "../components/layout/Header";
 import "../assets/css/review.css";
@@ -19,9 +18,8 @@ interface IProductDetail {
   checkList: [];
 }
 
-const Detail = () => {
+const Detail: React.FC = () => {
   const params = useParams();
-  // const product = DUMMY_LIST.filter((list) => list.id === Number(params.id));
   const [productDetail, setProductDetail] = useState<IProductDetail>();
 
   useEffect(() => {
