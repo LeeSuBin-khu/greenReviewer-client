@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import Review from "../components/review/Review";
 import Header from "../components/layout/Header";
 import "../assets/css/review.css";
+import "../assets/css/statistics.css";
 import axios from "axios";
+import Statistics from "../components/statistics/Main";
 
 interface IProductDetail {
   id: number;
@@ -73,6 +75,7 @@ const Detail: React.FC = () => {
           <img src={list} alt="Loading..." />
         ))}
       </div>
+      <Statistics />
       <Review />
     </div>
   );
