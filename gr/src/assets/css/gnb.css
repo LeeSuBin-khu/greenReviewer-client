@@ -1,0 +1,13 @@
+.gnb {
+    width: 100%;
+    height: 82px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gnb img {
+    height: 100%;
+}

@@ -31,7 +31,6 @@
     border: 1px solid #195B3F;
     border-radius: 30px;
     padding-left: 20px;
-    margin-top: 100px;
 }
 
 .reviewInput-review-button {
@@ -62,6 +61,9 @@
 }
 
 .reviewModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 400px;
     height: 500px;
     border-radius: 30px;

@@ -60,18 +60,24 @@ const ReviewModal = (props: propsType): JSX.Element => {
     return (
         <>
         {modalOpen ? 
-        <div className="reviewModal-bg">
+        <div className="reviewModal-bg font-18">
             <div className="reviewModal" ref={modalRef}>
-                {typeList.map( (type, key) => 
-                <div key={key}>
-                    <label><input ref={ type => (typeRef.current[key] = type as HTMLInputElement) } type="checkbox" onChange={typeChangeHandler} value={type.id} />{type.name}</label>
-                </div>
-                )}
-                <div>
-                    <input className="reviewInput-review-input" onChange={reviewChangeHandler} placeholder="리뷰를 입력해주세요."/>
-                </div>
-                <div>
-                    <button onClick={postClickHandler}>작성</button>
+                <div className="reviewModal-contents">
+                    <div className="font-20 font-bold color-green" style={{ marginBottom: '20px' }}>
+                        그린워싱 유형
+                    </div>
+                    {typeList.map( (type, key) => 
+                    <div key={key}>
+                        <label><input ref={ type => (typeRef.current[key] = type as HTMLInputElement) } type="checkbox" onChange={typeChangeHandler} value={type.id} />{type.name}</label>
+                    </div>
+                    )}
+                    <div className="font-20 font-bold color-green" style={{ marginBottom: '20px', marginTop: '50px' }}>
+                        리뷰
+                    </div>
+                    <div style={{ position: 'relative' }}>
+                        <input className="reviewInput-review-input" onChange={reviewChangeHandler} placeholder="리뷰를 입력해주세요."/>
+                        <button className="color-green" onClick={postClickHandler} style={{ position: 'absolute', top: '15px', left: '250px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>작성</button>
+                    </div>
                 </div>
             </div>
         </div> : null

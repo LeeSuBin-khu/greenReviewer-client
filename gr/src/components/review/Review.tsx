@@ -5,6 +5,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 import ReviewInput from "./ReviewInput";
 import ReviewModal from "./ReviewModal";
+import Pagination from "../pagination/Pagination";
 
 import defaultProfile from "../../assets/svg/default_profile.svg";
 import star5 from "../../assets/svg/star5.svg";
@@ -19,19 +20,30 @@ interface Data {
 const Review = (): JSX.Element => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [reviewList, setReviewList] = useState<Data []>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [reviewNum, setReviewNum] = useState<number>(0);
     const typeList = useFetch("checklists");
+    const postsPerPage = 10;
 
     useEffect( () => {
         const fetchApi = async () => {
-            const response: AxiosResponse<any> = await axios.get(`/review/list/${1}?page=${0}&size=10`);
+            const response: AxiosResponse<any> = await axios.get(`/review/list/${1}?page=${currentPage-1}&size=${postsPerPage}`);
             setReviewList(response.data);
         }
         fetchApi();
     }, [reviewList])
 
+    useEffect( () => {
+        const fetchApi = async () => {
+            const response: AxiosResponse<any> = await axios.get(`/product/detail/${1}`);
+            setReviewNum(response.data.reviewer);
+        }
+        fetchApi();
+    }, [reviewNum])
+
     return (
         <div style={{marginTop: '100px'}}>
-        <div className="font-30">Review</div>
+        <div className="font-30 font-bold">Review<span className="font-15" style={{ marginLeft: '10px', fontWeight: '400', color: '#2f3237'}}>{reviewNum}건</span></div>
         {reviewList.map( (review, key) => 
         <div className="review flex-col" key={key}>
             <div className="review-image-name flex-row">
@@ -55,6 +67,7 @@ const Review = (): JSX.Element => {
         )}
             <ReviewInput modalOpen={modalOpen} setModalOpen={setModalOpen} />
             <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+            <Pagination postsPerPage={postsPerPage} totalPosts={reviewList.length} paginate={setCurrentPage} />
         </div>
     );
 };

@@ -1,25 +1,49 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import axios, { AxiosResponse } from 'axios';
+
+import { useFetch } from "../../hooks/useFetch";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ['증거 불충분', '애매모호한 주장', '거짓말', 'Green'],
-  datasets: [
-    {
-      label: '그린워싱 유형 통계',
-      data: [12, 19, 3, 5],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-      ],
-    },
-  ],
-};
+interface Data {
+  id: number,
+  num: number
+}
 
 export default function Statistics() {
-  return <Doughnut data={data} />;
+  const [typeNumList, setTypeNumList] = useState<Data []>([]);
+  const typeList = useFetch("checklists");
+
+  useEffect( () => {
+    const fetchApi = async () => {
+      const response: AxiosResponse<any> = await axios.get(`/product/detail/${1}`);
+      setTypeNumList(response.data.checkList);
+    };
+    fetchApi();
+  }, []);
+
+  const data = {
+    labels: typeList.map( type => type.name ),
+    datasets: [
+      {
+        data: typeNumList.map( type => type.num ),
+        backgroundColor: [
+          '#ECEC84',
+          '#FFB69B',
+          '#A299CA',
+          '#7CCAAE',
+        ],
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <div style={{ position: 'relative', width: '550px', marginTop: '40px' }}>
+        <Doughnut data={data} />
+      </div>
+    </div>
+  );
 }
