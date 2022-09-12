@@ -12,7 +12,7 @@ import Detail from "./pages/ProductDetail";
 function App() {
   return (
     <div className="App">
-      <GNB />
+      {/* <GNB /> */}
       <Router>
         <Routes>
           <Route path="/" element={<Main />} />
