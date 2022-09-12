@@ -46,7 +46,7 @@ interface Page {
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }: Page) => {
     const pageList: number [] = [];
-    for(let i: number = 0; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for(let i: number = 0; i < Math.ceil(totalPosts / postsPerPage); i++) {
         pageList.push(i+1);
     }
     return (

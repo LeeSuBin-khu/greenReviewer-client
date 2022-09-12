@@ -6,6 +6,7 @@ import { useFetch } from "../../hooks/useFetch";
 interface propsType {
     modalOpen : boolean;
     setModalOpen : Dispatch<SetStateAction<boolean>>;
+    productId : number;
 }
 
 type ModalClose = ({ target }: MouseEvent) => void;
@@ -34,7 +35,7 @@ const ReviewModal = (props: propsType): JSX.Element => {
     const postClickHandler = () => {
         if(review !== "") {
             const response = axios.post(`/review/write`, {
-                "productId" : 1,
+                "productId" : props.productId,
                 "content" : review,
                 "nickname" : "이름",
                 "checkTypes" : types
