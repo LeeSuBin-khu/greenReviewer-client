@@ -1,4 +1,10 @@
 /* review */
+.review-wrapper {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .review {
     gap: 7px;
     border: 1px solid rgba(0, 0, 0, 0.1);

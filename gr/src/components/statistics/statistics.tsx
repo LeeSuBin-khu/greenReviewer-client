@@ -8,17 +8,21 @@ import { useFetch } from "../../hooks/useFetch";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Data {
-  id: number,
-  num: number
+  id: number;
+  num: number;
 }
 
-export default function Statistics() {
+interface Id {
+  productId : number
+}
+
+const Statistics = ( props: Id ) => {
   const [typeNumList, setTypeNumList] = useState<Data []>([]);
   const typeList = useFetch("checklists");
 
   useEffect( () => {
     const fetchApi = async () => {
-      const response: AxiosResponse<any> = await axios.get(`/product/detail/${1}`);
+      const response: AxiosResponse<any> = await axios.get(`/product/detail/${props.productId}`);
       setTypeNumList(response.data.checkList);
     };
     fetchApi();
@@ -47,3 +51,5 @@ export default function Statistics() {
     </div>
   );
 }
+
+export default Statistics;

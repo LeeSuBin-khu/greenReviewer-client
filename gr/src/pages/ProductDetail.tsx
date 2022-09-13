@@ -36,7 +36,6 @@ const Detail: React.FC = () => {
 
   return (
     <div className="product-detail-container">
-      <Header />
       <div className="product-detail-card">
         <div className="product-detail-thumb">
           <img src={productDetail?.pic_url} alt="Loading..." />
@@ -72,11 +71,13 @@ const Detail: React.FC = () => {
       </div>
       <div className="text-center">
         {productDetail?.detailpicUrl.map((list) => (
-          <img src={list} alt="Loading..." />
+          <div>
+            <img src={list} alt="Loading..." />
+          </div>
         ))}
       </div>
-      <Statistics />
-      <Review />
+      { productDetail !== undefined && <Statistics productId={ (productDetail as IProductDetail)?.id } /> }
+      { productDetail !== undefined && <Review productId={ (productDetail as IProductDetail)?.id } /> }
     </div>
   );
 };

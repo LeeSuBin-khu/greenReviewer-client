@@ -1,6 +1,8 @@
 .main-container,
 .product-detail-container {
-  margin: 0px 240px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 2000px;
 }
 
 .flex {
