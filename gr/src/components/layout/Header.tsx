@@ -1,5 +1,6 @@
 import React from "react";
 import SearchInput from "./SearchInput";
+import GNB from "../gnb/GNB";
 
 import logo from "../../assets/img/logo.jpg";
 

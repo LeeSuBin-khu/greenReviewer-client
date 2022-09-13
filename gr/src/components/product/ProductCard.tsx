@@ -11,13 +11,21 @@ const ProductCard = (props: ProductState): JSX.Element => {
   };
 
   return (
-    <div className="product-card" onClick={() => clickHandler(props.id)}>
-      <div className="product-card-img">
+    <div className="product-list" onClick={() => clickHandler(props.id)}>
+      <div className="product-list-img">
         <img src={props.picThumbnail} alt="err" />
       </div>
-      <div className="product-card-ex">
-        <div className="product-card-name">{props.name}</div>
-        <div className="product-card-price">{props.price}원</div>
+      <div className="product-list-ex">
+        <div className="product-list-top">
+          <div className="product-list-name">{props.name}</div>
+          <div className="product-list-vendor">{props.vendor}</div>
+        </div>
+        <div className="product-list-bottom">
+          <div className="product-list-review">리뷰 수 : {props.reviewer}</div>
+          <div className="product-list-price">
+            {props.price.toLocaleString()}원
+          </div>
+        </div>
       </div>
     </div>
   );

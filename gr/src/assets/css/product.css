@@ -1,5 +1,3 @@
-/* 지워도 되는 파일 */
-
 .main-container,
 .product-detail-container {
   margin-left: auto;
@@ -16,6 +14,7 @@
   height: 100%;
   flex-wrap: wrap;
   padding: 20px;
+  margin-top: 100px;
 }
 
 .product-card {
@@ -28,10 +27,27 @@
   cursor: pointer;
 }
 
+.product-list {
+  height: 220px;
+  width: 1160px;
+  padding: 20px;
+  display: flex;
+  border-top: 1px solid;
+  border-color: rgb(173, 173, 173);
+}
+
 .product-card-img img {
   width: 100%;
   height: 260px;
   border-radius: 10px 10px 0 0;
+}
+
+.product-list-img img {
+  width: 210px;
+  height: 210px;
+  border: 1px solid;
+  margin-top: 5px;
+  border-color: rgb(150, 150, 150);
 }
 
 .product-card-ex {
@@ -40,9 +56,30 @@
   flex-wrap: wrap;
 }
 
+.product-list-ex {
+  width: 96.5%;
+  margin-left: 3.5%;
+  margin-top: 5px;
+}
+
+.product-list-top {
+  margin-top: 10px;
+  height: 120px;
+}
+
+.product-list-bottom {
+  display: flex;
+  height: 80px;
+  margin-top: 10px;
+}
+
 .product-card-name {
   width: 100%;
   height: 60px;
+}
+
+.product-list-name {
+  font-size: 1.5rem;
 }
 
 .product-card-price {
@@ -50,29 +87,34 @@
   width: 60%;
 }
 
+.product-list-vendor {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  margin-left: 1.5px;
+  color: rgb(150, 150, 150);
+}
+
+.product-list-review {
+  width: 50%;
+  margin-top: 10px;
+  margin-left: 1.5px;
+  font-size: 1.25rem;
+  color: #009a4f;
+}
+
+.product-list-price {
+  font-size: 30px;
+  width: 50%;
+  text-align: right;
+  margin-top: 5px;
+  color: rgb(157, 189, 110);
+}
+
 .product-card-eco {
   margin-top: 10px;
   text-align: right;
   width: 40%;
   height: 20px;
-}
-
-.eco-0 {
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.eco-1 {
-  color: rgb(255, 0, 0);
-}
-
-.eco-2 {
-  color: #ff9e9e;
-}
-.eco-3 {
-  color: #bdd2a8;
-}
-.eco-4 {
-  color: #195b3f;
 }
 
 .product-table {
