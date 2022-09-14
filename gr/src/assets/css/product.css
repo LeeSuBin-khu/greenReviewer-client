@@ -1,8 +1,6 @@
 .main-container,
 .product-detail-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 2000px;
+  margin: 0px 12.5%;
 }
 
 .flex {
@@ -18,7 +16,6 @@
 }
 
 .product-card {
-  /* width: 353px; */
   width: 350px;
   height: 387px;
   margin: 50px 20px;

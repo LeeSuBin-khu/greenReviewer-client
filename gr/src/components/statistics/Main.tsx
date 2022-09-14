@@ -1,10 +1,10 @@
 import React from "react";
 
 import Description from "./Description";
-import Statistics from "./Statistics";
+import Statistics from "./statistics";
 
 interface Id {
-  productId : number
+  productId: number;
 }
 
 const Main = (props: Id) => {
