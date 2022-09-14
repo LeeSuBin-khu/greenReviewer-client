@@ -1,17 +1,18 @@
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
-interface Data {
+interface IData {
     id: string,
     name: string
 }
 
+//api get 커스텀 훅
 export const useFetch = (url: string) => {
-    const [data, setData] = useState<Data []>([]);
+    const [data, setData] = useState<IData []>([]);
 
     useEffect( () => {
         const fetchApi = async () => {
-            const response: AxiosResponse<any> = await axios.get(`/${url}`);
+            const response: AxiosResponse<IData []> = await axios.get(`/${url}`);
             setData(response.data);
        }
        fetchApi();

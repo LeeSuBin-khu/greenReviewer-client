@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+
 import Review from "../components/review/Review";
-import Header from "../components/layout/Header";
+import Statistics from "../components/statistics/Main";
+
 import "../assets/css/review.css";
 import "../assets/css/statistics.css";
-import axios from "axios";
-import Statistics from "../components/statistics/Main";
 
 interface IProductDetail {
   id: number;
@@ -23,6 +24,7 @@ interface IProductDetail {
 const Detail: React.FC = () => {
   const params = useParams();
   const [productDetail, setProductDetail] = useState<IProductDetail>();
+  const [reviewUpdate, setReviewUpdate] = useState<number>(0);
 
   useEffect(() => {
     const getProductDetail = async () => {
@@ -76,8 +78,8 @@ const Detail: React.FC = () => {
           </div>
         ))}
       </div>
-      { productDetail !== undefined && <Statistics productId={ (productDetail as IProductDetail)?.id } /> }
-      { productDetail !== undefined && <Review productId={ (productDetail as IProductDetail)?.id } /> }
+      <Statistics reviewUpdate={reviewUpdate} />
+      <Review setReviewUpdate={setReviewUpdate} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
-import { ProductState } from "../../store";
 import { useNavigate } from "react-router-dom";
+
+import { ProductState } from "../../store";
 
 const ProductCard = (props: ProductState): JSX.Element => {
   const navigate = useNavigate();

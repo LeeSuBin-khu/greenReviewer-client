@@ -1,13 +1,7 @@
-import React from "react";
-
 import Description from "./Description";
 import Statistics from "./Statistics";
 
-interface Id {
-  productId : number
-}
-
-const Main = (props: Id) => {
+const Main = (props: { reviewUpdate: number }) => {
   return (
     <div className="statistics-main">
       <div className="font-30 font-bold">Type</div>
@@ -16,7 +10,7 @@ const Main = (props: Id) => {
         style={{ justifyContent: "space-between", height: "549px" }}
       >
         <Description />
-        <Statistics productId={props.productId} />
+        <Statistics reviewUpdate={props.reviewUpdate}/>
       </div>
     </div>
   );
