@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import axios, { AxiosResponse } from "axios";
+import { useParams } from "react-router-dom";
 
 import { useFetch } from "../../hooks/useFetch";
 
@@ -8,7 +9,6 @@ import ReviewModal from "./ReviewModal";
 import Pagination from "../pagination/Pagination";
 
 import defaultProfile from "../../assets/svg/default_profile.svg";
-import star5 from "../../assets/svg/star5.svg";
 
 interface Data {
     id: number;
@@ -17,60 +17,65 @@ interface Data {
     checkTypes: number [];
 }
 
-interface Id {
-    productId: number;
-}
-
-const Review = ( props: Id ): JSX.Element => {
+const Review = (props: { setReviewUpdate: Dispatch<SetStateAction<number>> }): JSX.Element => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [reviewList, setReviewList] = useState<Data []>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [reviewNum, setReviewNum] = useState<number>(0);
+
+    const params = useParams();
+
     const typeList = useFetch("checklists");
+    
     const postsPerPage = 10;
 
     useEffect( () => {
         const fetchApi = async () => {
-            const response: AxiosResponse<any> = await axios.get(`/review/list/${props.productId}?page=${currentPage-1}&size=${postsPerPage}`);
+            const response: AxiosResponse<any> = await axios.get(`/review/list/${params.id}?page=${currentPage-1}&size=${postsPerPage}`);
             setReviewList(response.data);
         }
         fetchApi();
-    }, [reviewList])
+    }, [reviewList]);
 
     useEffect( () => {
         const fetchApi = async () => {
-            const response: AxiosResponse<any> = await axios.get(`/product/detail/${props.productId}`);
+            const response: AxiosResponse<any> = await axios.get(`/product/detail/${params.id}`);
             setReviewNum(response.data.reviewer);
+            props.setReviewUpdate(response.data.reviewer);
         }
         fetchApi();
-    }, [reviewList])
+    }, [reviewList]);
 
     return (
-        <div style={{marginTop: '100px'}} className='review-wrapper'>
-        <div className="font-30 font-bold">Review<span className="font-15" style={{ marginLeft: '10px', fontWeight: '400', color: '#2f3237'}}>{reviewNum}건</span></div>
-        {reviewList.map( (review, key) => 
-        <div className="review flex-col" key={key}>
-            <div className="review-image-name flex-row">
-                <div className="review-image"><img src={defaultProfile}/></div>
-                <div className="flex-col">
-                    <div className="review-name-review flex-col">
-                        <div className="font-18">이름</div>
-                        {/* <div><img src={star5}/></div> */}
-                        <div className="review-review-type flex-col">
-                            <div className="review-type font-13 color-green" key={key}>
-                            {review.checkTypes.map( (id, key) => typeList.map( typeId => id === parseInt(typeId.id) && 
-                                <span>{key !== 0 && ' | '}{typeId.name}</span>
-                            ))}
+        <div className='review-wrapper'>
+            <div className="review-title font-30 font-bold">
+                Review<span className="font-15">{reviewNum}건</span>
+            </div>
+            {params.id !== undefined && reviewList.map( ( review, key ) => 
+            <div className="review-contents flex-col" key={key}>
+                <div className="review-contents-wrapper flex-row">
+                    <div className="review-image">
+                        <img src={defaultProfile}/>
+                    </div>
+                    <div className="flex-col">
+                        <div className="review-name-review flex-col">
+                            <div className="font-18">이름</div>
+                            <div className="review-type-review flex-col">
+                                <div className="review-type font-13 color-green">
+                                {/* 그린워싱 유형 */}
+                                {review.checkTypes.map( ( id, key ) => typeList.map( type => id === parseInt(type.id) && 
+                                    <span key={key}>{key !== 0 && ' | '}{type.name}</span>
+                                ))}
+                                </div>
+                                <div className="review-review font-15">{review.content}</div>
                             </div>
-                            <div className="review-review font-15">{review.content}</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        )}
+            )}
             <ReviewInput modalOpen={modalOpen} setModalOpen={setModalOpen} />
-            <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} productId={props.productId}/>
+            <ReviewModal modalOpen={modalOpen} setModalOpen={setModalOpen} productId={ parseInt(params.id as string) } />
             <Pagination postsPerPage={postsPerPage} totalPosts={reviewList.length} paginate={setCurrentPage} />
         </div>
     );
