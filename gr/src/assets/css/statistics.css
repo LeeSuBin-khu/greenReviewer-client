@@ -1,0 +1,17 @@
+.statistics-main {
+    width: 1200px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    height: 100%;
+    margin-top: 40px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding-right: 20px;
+}
