@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import Review from "../review/Review";
-import Main from "../statistics/Main";
-import Statistics from "../statistics/statistics";
 
 interface IProductDetail {
   id: number;
@@ -81,14 +78,7 @@ const ProductView = (): JSX.Element => {
           <img src={list} alt="Loading..." />
         ))}
       </div>
-      <div ref={reviewRef}>
-        {productDetail !== undefined && (
-          <Main productId={(productDetail as IProductDetail)?.id} />
-        )}
-        {productDetail !== undefined && (
-          <Review productId={(productDetail as IProductDetail)?.id} />
-        )}
-      </div>
+      <div ref={reviewRef}></div>
     </div>
   );
 };

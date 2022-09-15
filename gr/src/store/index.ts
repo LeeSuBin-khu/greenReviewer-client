@@ -12,10 +12,12 @@ export interface ProductState {
 
 export interface IProductState {
   product: ProductState[];
+  productId: number;
 }
 
 const initialProductState: IProductState = {
   product: [],
+  productId: 0,
 };
 
 const productSlice = createSlice({
@@ -25,12 +27,16 @@ const productSlice = createSlice({
     setProductList(state, action) {
       state.product = action.payload;
     },
+    setProductId(state, action) {
+      state.productId = action.payload;
+    },
   },
 });
 
 const store = configureStore({
   reducer: {
     product: productSlice.reducer,
+    productId: productSlice.reducer,
   },
 });
 
