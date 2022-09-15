@@ -23,7 +23,6 @@ const ProductList: React.FC = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
           dispatch(productActions.setProductList(res.data));
         })
         .catch((err) => console.log(err));
@@ -42,7 +41,7 @@ const ProductList: React.FC = () => {
             price={list.price}
             picThumbnail={list.picThumbnail}
             reviewer={list.reviewer}
-            eco={list.eco}
+            checkList={list.checkList}
           />
         ))}
       </div>

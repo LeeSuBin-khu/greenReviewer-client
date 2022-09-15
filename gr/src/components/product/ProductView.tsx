@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Review from "../review/Review";
 import Main from "../statistics/Main";
@@ -20,6 +20,7 @@ interface IProductDetail {
 
 const ProductView = (): JSX.Element => {
   const params = useParams();
+  const reviewRef = useRef<HTMLDivElement>(null);
   const [productDetail, setProductDetail] = useState<IProductDetail>();
 
   useEffect(() => {
@@ -30,6 +31,10 @@ const ProductView = (): JSX.Element => {
     };
     getProductDetail();
   }, []);
+
+  const reviewBtnClick = () => {
+    reviewRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div>
@@ -62,7 +67,12 @@ const ProductView = (): JSX.Element => {
             >
               <button className="product-detail-buybtn">구매하기</button>
             </a>
-            <button className="product-detail-reviewbtn">리뷰확인</button>
+            <button
+              className="product-detail-reviewbtn"
+              onClick={reviewBtnClick}
+            >
+              리뷰확인
+            </button>
           </div>
         </div>
       </div>
@@ -71,12 +81,14 @@ const ProductView = (): JSX.Element => {
           <img src={list} alt="Loading..." />
         ))}
       </div>
-      {productDetail !== undefined && (
-        <Main productId={(productDetail as IProductDetail)?.id} />
-      )}
-      {productDetail !== undefined && (
-        <Review productId={(productDetail as IProductDetail)?.id} />
-      )}
+      <div ref={reviewRef}>
+        {productDetail !== undefined && (
+          <Main productId={(productDetail as IProductDetail)?.id} />
+        )}
+        {productDetail !== undefined && (
+          <Review productId={(productDetail as IProductDetail)?.id} />
+        )}
+      </div>
     </div>
   );
 };
