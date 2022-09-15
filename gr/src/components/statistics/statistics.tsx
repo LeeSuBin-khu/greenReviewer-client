@@ -41,6 +41,7 @@ const Statistics = ( props: { reviewUpdate: number }) => {
     ],
   };
 
+  // 통계 표 부분
   return (
     <div>
       <div style={{ position: 'relative', width: '550px', marginTop: '40px' }}>
