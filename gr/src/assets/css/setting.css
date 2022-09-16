@@ -21,15 +21,15 @@
 }
 
 .font-20 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .font-30 {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .font-bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .color-green {
@@ -42,4 +42,24 @@
 
 .text-center {
   text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.bg-gray {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bg-green {
+  background-color: #bdd2a8;
+}
+
+.bg-pink {
+  background-color: #ff9e9e;
+}
+
+.bg-yellow {
+  background-color: #efe26c;
 }

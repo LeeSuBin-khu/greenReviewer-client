@@ -21,11 +21,11 @@ const ProductView = (): JSX.Element => {
   const [productDetail, setProductDetail] = useState<IProductDetail>();
   const [loading, setLoading] = useState<boolean>(false);
 
+  //상품 상세 정보 api 호출
   useEffect(() => {
     const getProductDetail = async () => {
       await axios.get(`/product/detail/${params.id}`).then((res) => {
         setProductDetail(res.data);
-        console.log("hi");
         setLoading(true);
       });
     };

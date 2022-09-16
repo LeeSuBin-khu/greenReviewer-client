@@ -11,6 +11,10 @@ const ProductCard = (props: ProductState): JSX.Element => {
   const [bgColor, setBgColor] = useState<String>();
   const navigate = useNavigate();
 
+  /* 친환경적, 그린워싱 위험도를 표현하기 위해 상품의 리뷰를 파악함
+  리뷰의 개수의 절반 초과가 그린워싱 위험리뷰라면 빨간색으로 표현
+  리뷰의 절반이 절반이 그린워싱 위험리뷰라면 노란색으로 표현
+  리뷰의 절반 이상이 친환경적 리뷰라면 초록색으로 표현 */
   useEffect(() => {
     let cnt = 0;
     props.checkList.map((list: ICheckList) => (cnt += list.num));

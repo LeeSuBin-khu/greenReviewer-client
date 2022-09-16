@@ -12,6 +12,7 @@ const ProductList: React.FC = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state: Product) => state.product.product);
 
+  //초기에 검색어 없이 상품 api 호출
   useEffect(() => {
     const getProductList = async () => {
       await axios
