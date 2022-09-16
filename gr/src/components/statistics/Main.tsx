@@ -1,5 +1,5 @@
 import Description from "./Description";
-import Statistics from "./Statistics";
+import Statistics from "./statistics";
 
 const Main = (props: { reviewUpdate: number }) => {
   return (
@@ -10,7 +10,7 @@ const Main = (props: { reviewUpdate: number }) => {
         style={{ justifyContent: "space-between", height: "549px" }}
       >
         <Description />
-        <Statistics reviewUpdate={props.reviewUpdate}/>
+        <Statistics reviewUpdate={props.reviewUpdate} />
       </div>
     </div>
   );

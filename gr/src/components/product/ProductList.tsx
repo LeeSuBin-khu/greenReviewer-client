@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { IProductState, productActions, ProductState } from "../../store";
 
@@ -22,11 +22,10 @@ const ProductList: React.FC = () => {
             size: 10,
           },
         })
-        .then((res) => {
-          console.log(res.data);
+        .then((res: AxiosResponse) => {
           dispatch(productActions.setProductList(res.data));
         })
-        .catch((err) => console.log(err));
+        .catch((err: AxiosError) => console.log(err));
     };
     getProductList();
   }, []);
@@ -42,7 +41,7 @@ const ProductList: React.FC = () => {
             price={list.price}
             picThumbnail={list.picThumbnail}
             reviewer={list.reviewer}
-            eco={list.eco}
+            checkList={list.checkList}
           />
         ))}
       </div>

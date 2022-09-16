@@ -1,6 +1,4 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { persistReducer } from 'redux-persist';
-
 
 export interface ProductState {
   id: number;
@@ -8,9 +6,8 @@ export interface ProductState {
   name: string;
   vendor: string;
   price: number;
-  reviewer?: number;
-  checklists?: [];
-  eco: string;
+  reviewer: number;
+  checkList: [];
 }
 
 export interface IProductState {
