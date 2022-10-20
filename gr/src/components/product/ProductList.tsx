@@ -32,6 +32,8 @@ const ProductList: React.FC = () => {
   }, []);
 
   return (
+    <>
+    {productList &&
     <div className="">
       <div className="product flex-row content-center">
         {productList.map((list: ProductState) => (
@@ -47,6 +49,8 @@ const ProductList: React.FC = () => {
         ))}
       </div>
     </div>
+      }
+      </>
   );
 };
 
