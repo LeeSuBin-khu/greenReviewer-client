@@ -36,7 +36,7 @@ const Review = (props: {
       setReviewList(response.data);
     };
     fetchApi();
-  }, [reviewList]);
+  }, []);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -47,9 +47,11 @@ const Review = (props: {
       props.setReviewUpdate(response.data.reviewer);
     };
     fetchApi();
-  }, [reviewList]);
+  }, []);
 
   return (
+    <>
+    {reviewList &&
     <div className="review-wrapper">
       <div className="review-title font-30 font-bold">
         Review<span className="font-15">{reviewNum}건</span>
@@ -100,6 +102,8 @@ const Review = (props: {
         paginate={setCurrentPage}
       />
     </div>
+}
+</>
   );
 };
 
