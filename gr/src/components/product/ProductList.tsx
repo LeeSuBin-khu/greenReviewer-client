@@ -36,7 +36,7 @@ const ProductList: React.FC = () => {
     {productList &&
     <div className="">
       <div className="product flex-row content-center">
-        {productList.map((list: ProductState) => (
+        {productList?.map((list: ProductState) => (
           <ProductCard
             id={list.id}
             name={list.name}

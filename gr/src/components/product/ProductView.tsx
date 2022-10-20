@@ -57,10 +57,10 @@ const ProductView = (): JSX.Element => {
                 <p>리뷰 수: {productDetail?.reviewer}</p>
               </div>
               <div className="product-detail-delivery">
-                <p>배송비: {productDetail?.deliveryFee.toLocaleString()}원</p>
+                <p>배송비: {productDetail?.deliveryFee?.toLocaleString()}원</p>
               </div>
               <div className="product-detail-price">
-                <p>{productDetail?.price.toLocaleString()}원</p>
+                <p>{productDetail?.price?.toLocaleString()}원</p>
               </div>
               <div className="product-detail-btn">
                 <a
