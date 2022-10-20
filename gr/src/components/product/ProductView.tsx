@@ -82,7 +82,9 @@ const ProductView = (): JSX.Element => {
           </div>
           <div className="text-center">
             {productDetail?.detailpicUrl.map((list) => (
-              <img src={list} alt="Loading..." />
+              <div>
+                <img src={list} alt="Loading..." />
+              </div>
             ))}
           </div>
           <div ref={reviewRef}></div>
