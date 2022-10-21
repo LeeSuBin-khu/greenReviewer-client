@@ -11,11 +11,14 @@ interface Product {
 
 const ProductList: React.FC = () => {
   const dispatch = useDispatch();
-  const productList = useSelector((state: Product) => state.product.product);
+  const totalProductList = useSelector(
+    (state: Product) => state.product.product
+  );
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const postsPerPage = 15;
+  const totalProductCnt = 225;
 
   //초기에 검색어 없이 상품 api 호출
   useEffect(() => {
@@ -25,7 +28,7 @@ const ProductList: React.FC = () => {
           params: {
             q: "",
             page: currentPage,
-            size: 15,
+            size: totalProductCnt,
           },
         })
         .then((res: AxiosResponse) => {
@@ -34,28 +37,33 @@ const ProductList: React.FC = () => {
         .catch((err: AxiosError) => console.log(err));
     };
     getProductList();
-  }, [currentPage]);
+  }, []);
 
   return (
     <>
-      {productList && (
+      {totalProductList && (
         <div className="">
           <div className="product flex-row content-center">
-            {productList?.map((list: ProductState) => (
-              <ProductCard
-                id={list.id}
-                name={list.name}
-                vendor={list.vendor}
-                price={list.price}
-                picThumbnail={list.picThumbnail}
-                reviewer={list.reviewer}
-                checkList={list.checkList}
-              />
-            ))}
+            {totalProductList
+              .slice(
+                (currentPage - 1) * postsPerPage,
+                currentPage * postsPerPage
+              )
+              ?.map((list: ProductState) => (
+                <ProductCard
+                  id={list.id}
+                  name={list.name}
+                  vendor={list.vendor}
+                  price={list.price}
+                  picThumbnail={list.picThumbnail}
+                  reviewer={list.reviewer}
+                  checkList={list.checkList}
+                />
+              ))}
           </div>
           <Pagination
             postsPerPage={postsPerPage}
-            totalPosts={225}
+            totalPosts={totalProductCnt}
             paginate={setCurrentPage}
           />
         </div>
