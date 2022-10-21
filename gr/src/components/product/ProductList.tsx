@@ -16,7 +16,7 @@ const ProductList: React.FC = () => {
   useEffect(() => {
     const getProductList = async () => {
       await axios
-        .get("/product/list", {
+        .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
           params: {
             q: "",
             page: 1,

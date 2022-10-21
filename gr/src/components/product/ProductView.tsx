@@ -24,7 +24,7 @@ const ProductView = (): JSX.Element => {
   //상품 상세 정보 api 호출
   useEffect(() => {
     const getProductDetail = async () => {
-      await axios.get(`/product/detail/${params.id}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_SERVER_HOST}/product/detail/${params.id}`).then((res) => {
         setProductDetail(res.data);
         setLoading(true);
       });

@@ -31,23 +31,23 @@ const Review = (props: {
   useEffect(() => {
     const fetchApi = async () => {
       const response: AxiosResponse<any> = await axios.get(
-        `/review/list/${params.id}?page=${currentPage - 1}&size=${postsPerPage}`
+        `${process.env.REACT_APP_SERVER_HOST}/review/list/${params.id}?page=${currentPage - 1}&size=${postsPerPage}`
       );
       setReviewList(response.data);
     };
     fetchApi();
-  }, []);
+  }, [modalOpen, currentPage]);
 
   useEffect(() => {
     const fetchApi = async () => {
       const response: AxiosResponse<any> = await axios.get(
-        `/product/detail/${params.id}`
+        `${process.env.REACT_APP_SERVER_HOST}/product/detail/${params.id}`
       );
       setReviewNum(response.data.reviewer);
       props.setReviewUpdate(response.data.reviewer);
     };
     fetchApi();
-  }, []);
+  }, [modalOpen]);
 
   return (
     <>
@@ -98,7 +98,7 @@ const Review = (props: {
       />
       <Pagination
         postsPerPage={postsPerPage}
-        totalPosts={reviewList.length}
+        totalPosts={reviewNum}
         paginate={setCurrentPage}
       />
     </div>

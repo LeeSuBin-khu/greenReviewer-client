@@ -30,7 +30,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "aws s3 sync ./build s3://greenreviewer --profile=subin",
+    "invalidate": "aws cloudfront create-invalidation --profil=subin --distribution-id EZU97NAK6I7U --paths /*",
+    "all": "npm run build && npm run deploy && npm run invalidate"
   },
   "eslintConfig": {
     "extends": [

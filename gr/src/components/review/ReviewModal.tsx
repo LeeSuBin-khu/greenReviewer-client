@@ -34,7 +34,7 @@ const ReviewModal = (props: propsType): JSX.Element => {
 
     const postClickHandler = () => {
         if(review !== "") {
-            const response = axios.post(`/review/write`, {
+            const response = axios.post(`${process.env.REACT_APP_SERVER_HOST}/review/write`, {
                 "productId" : props.productId,
                 "content" : review,
                 "nickname" : "이름",

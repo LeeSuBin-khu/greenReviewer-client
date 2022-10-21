@@ -10,7 +10,7 @@ const SearchInput: React.FC = () => {
 
   const searchHandler = async () => {
     await axios
-      .get("/product/list", {
+      .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
         params: {
           q: inputRef.current?.value,
           page: 1,

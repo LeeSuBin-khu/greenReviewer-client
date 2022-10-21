@@ -21,7 +21,7 @@ const Statistics = (props: { reviewUpdate: number }) => {
   useEffect(() => {
     const fetchApi = async () => {
       const response: AxiosResponse<any> = await axios.get(
-        `/product/detail/${params.id}`
+        `${process.env.REACT_APP_SERVER_HOST}/product/detail/${params.id}`
       );
       setTypeNumList(response.data.checkList);
     };
