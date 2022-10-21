@@ -1,89 +1,101 @@
+/*
+ * Copyright 2022 KHUGREEN (https://github.com/KHUGREEN)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /* review */
 .review-wrapper {
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
 }
 
-.review-title span{
-    margin-left: 10px;
-    font-weight: 400;
-    color: #2f3237;
+.review-title span {
+  margin-left: 10px;
+  font-weight: 400;
+  color: #2f3237;
 }
 
 .review-contents {
-    gap: 7px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    padding-bottom: 23.48px;
-    width: 1044px;
-    margin-top: 40px;
+  gap: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  padding-bottom: 23.48px;
+  width: 1044px;
+  margin-top: 40px;
 }
 
 .review-contents-wrapper {
-    gap: 15px;
+  gap: 15px;
 }
 
 .review-type-review {
-    gap: 50px;
-    margin-top: 7px;
+  gap: 50px;
+  margin-top: 7px;
 }
-
-
 
 /* reviewInput */
 .reviewInput-review {
-    position: relative;
+  position: relative;
 }
 
 .reviewInput-review-input {
-    box-sizing: border-box;
-    width: 300px;
-    height: 50px;
-    border: 1px solid #195B3F;
-    border-radius: 30px;
-    padding-left: 20px;
+  box-sizing: border-box;
+  width: 300px;
+  height: 50px;
+  border: 1px solid #195b3f;
+  border-radius: 30px;
+  padding-left: 20px;
 }
 
 .reviewInput-review-button {
-    position: absolute;
-    left: 1000px;
-    top: 120px;
-    width: 100px;
-    height: 40px;
-    background: #195B3F;
-    border-radius: 60px;
-    color: white;
-    border: 0;
-    cursor: pointer;
+  position: absolute;
+  left: 1000px;
+  top: 120px;
+  width: 100px;
+  height: 40px;
+  background: #195b3f;
+  border-radius: 60px;
+  color: white;
+  border: 0;
+  cursor: pointer;
 }
-
-
 
 /* reviewModal */
 .reviewModal-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .reviewModal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 400px;
-    height: 500px;
-    border-radius: 30px;
-    background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 500px;
+  border-radius: 30px;
+  background-color: white;
 }
