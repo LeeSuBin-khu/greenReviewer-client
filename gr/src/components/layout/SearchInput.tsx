@@ -14,7 +14,7 @@ const SearchInput: React.FC = () => {
         params: {
           q: inputRef.current?.value,
           page: 1,
-          size: 10,
+          size: 100,
         },
       })
       .then((res) => {

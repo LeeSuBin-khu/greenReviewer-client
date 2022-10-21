@@ -1,11 +1,11 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./pages/Main";
 import Header from "./components/layout/Header";
+import Detail from "./pages/ProductDetail";
 
 import "./App.css";
 import "./assets/css/setting.css";
-import Detail from "./pages/ProductDetail";
+import "./assets/css/loading.css";
 
 function App() {
   return (
