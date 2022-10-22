@@ -18,6 +18,7 @@ const SearchInput: React.FC = () => {
         },
       })
       .then((res) => {
+        dispatch(productActions.setKeyword(inputRef.current?.value));
         dispatch(productActions.setProductList(res.data));
       })
       .catch((err) => console.log(err));

@@ -7,7 +7,7 @@ import Pagination from "../pagination/Pagination";
 import Loading from "../layout/Loading";
 import useScroll from "../../hooks/useScroll";
 
-interface Product {
+export interface Product {
   product: IProductState;
 }
 
@@ -16,68 +16,82 @@ const ProductList: React.FC = () => {
 
   const { ele, onScroll } = useScroll();
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const totalProductList = useSelector(
     (state: Product) => state.product.product
   );
+  const searchKeyword = useSelector((state: Product) => state.product.keyword);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const postsPerPage = 15;
   const totalProductCnt = 225;
 
+  useEffect(() => {
+    setLoading(true);
+  }, [searchKeyword]);
+
   //초기에 검색어 없이 상품 api 호출
   useEffect(() => {
-    console.log("Hello");
     const getProductList = async () => {
       await axios
         .get("/product/list", {
           params: {
-            q: "",
+            q: searchKeyword,
             page: currentPage,
             size: postsPerPage,
           },
         })
         .then((res: AxiosResponse) => {
           dispatch(productActions.setProductList(res.data));
-          setLoading(true);
+          setLoading(false);
         })
         .catch((err: AxiosError) => console.log(err));
     };
     getProductList();
-  }, [currentPage]);
+  }, [currentPage, searchKeyword]);
 
   return (
     <>
       <div ref={ele} className="top"></div>
       {totalProductList && (
         <>
-          {loading ? (
-            <div className="product flex-row content-center">
-              {totalProductList?.map((list: ProductState, index) => (
-                <ProductCard
-                  key={index}
-                  id={list.id}
-                  name={list.name}
-                  vendor={list.vendor}
-                  price={list.price}
-                  picThumbnail={list.picThumbnail}
-                  reviewer={list.reviewer}
-                  checkList={list.checkList}
-                />
-              ))}
-            </div>
+          {!loading ? (
+            <>
+              {totalProductList.length !== 0 ? (
+                <>
+                  <div className="product flex-row content-center">
+                    {totalProductList?.map((list: ProductState, index) => (
+                      <ProductCard
+                        key={index}
+                        id={list.id}
+                        name={list.name}
+                        vendor={list.vendor}
+                        price={list.price}
+                        picThumbnail={list.picThumbnail}
+                        reviewer={list.reviewer}
+                        checkList={list.checkList}
+                      />
+                    ))}
+                  </div>
+                  <div onClick={onScroll}>
+                    <Pagination
+                      postsPerPage={postsPerPage}
+                      totalPosts={totalProductCnt}
+                      paginate={setCurrentPage}
+                    />
+                  </div>
+                </>
+              ) : (
+                <div className="flex content-center no-data">
+                  <p>상품이 존재하지 않습니다.</p>
+                </div>
+              )}
+            </>
           ) : (
             <Loading />
           )}
-          <div onClick={onScroll}>
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={totalProductCnt}
-              paginate={setCurrentPage}
-            />
-          </div>
         </>
       )}
     </>
