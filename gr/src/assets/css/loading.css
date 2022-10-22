@@ -1,0 +1,46 @@
+.product-loading {
+  display: inline-block;
+  position: relative;
+  margin-top: 70px;
+  width: 80px;
+  height: 80px;
+}
+
+.product-loading div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #195b3f;
+  border-radius: 50%;
+  animation: product-loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #195b3f transparent transparent transparent;
+}
+
+.product-loading div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.product-loading div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.product-loading div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes product-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.top {
+  position: absolute;
+  top: 0;
+}

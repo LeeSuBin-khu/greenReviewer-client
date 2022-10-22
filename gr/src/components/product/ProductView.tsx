@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../layout/Loading";
 
 interface IProductDetail {
   id: number;
@@ -15,18 +16,22 @@ interface IProductDetail {
   checkList: [];
 }
 
-const ProductView = (): JSX.Element => {
+interface IProps {
+  loading: boolean;
+  setLoading: (state: boolean) => void;
+}
+
+const ProductView = ({ loading, setLoading }: IProps): JSX.Element => {
   const params = useParams();
   const reviewRef = useRef<HTMLDivElement>(null);
   const [productDetail, setProductDetail] = useState<IProductDetail>();
-  const [loading, setLoading] = useState<boolean>(false);
 
   //상품 상세 정보 api 호출
   useEffect(() => {
     const getProductDetail = async () => {
       await axios.get(`${process.env.REACT_APP_SERVER_HOST}/product/detail/${params.id}`).then((res) => {
         setProductDetail(res.data);
-        setLoading(true);
+        setLoading(false);
       });
     };
     getProductDetail();
@@ -37,10 +42,9 @@ const ProductView = (): JSX.Element => {
   };
 
   return (
-    <div>
-      {!loading ? (
-        <p>잠시만 기다려주세요...</p>
-      ) : (
+    <>
+      {loading && <Loading />}
+      {!loading && (
         <>
           <div className="product-detail-card">
             <div className="product-detail-thumb">
@@ -81,8 +85,8 @@ const ProductView = (): JSX.Element => {
             </div>
           </div>
           <div className="text-center">
-            {productDetail?.detailpicUrl.map((list) => (
-              <div>
+            {productDetail?.detailpicUrl.map((list, index) => (
+              <div key={index}>
                 <img src={list} alt="Loading..." />
               </div>
             ))}
@@ -90,7 +94,7 @@ const ProductView = (): JSX.Element => {
           <div ref={reviewRef}></div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

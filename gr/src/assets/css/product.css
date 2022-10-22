@@ -186,3 +186,9 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.no-data p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000b0;
+}
