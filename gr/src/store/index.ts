@@ -12,10 +12,12 @@ export interface ProductState {
 
 export interface IProductState {
   product: ProductState[]; // 상품 정보가 담긴 array
+  keyword: string;
 }
 
 const initialProductState: IProductState = {
   product: [],
+  keyword: "",
 };
 
 const productSlice = createSlice({
@@ -24,6 +26,9 @@ const productSlice = createSlice({
   reducers: {
     setProductList(state, action) {
       state.product = action.payload;
+    },
+    setKeyword(state, action) {
+      state.keyword = action.payload;
     },
   },
 });
