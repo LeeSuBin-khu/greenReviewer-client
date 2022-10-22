@@ -1,5 +1,5 @@
 import Description from "./Description";
-import Statistics from "./Statistics";
+import Statistics from "./statistics";
 
 const Main = (props: { reviewUpdate: number }) => {
   return (

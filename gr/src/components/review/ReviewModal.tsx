@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, Dispatch, SetStateAction, ChangeEvent } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import { useFetch } from "../../hooks/useFetch";
 
@@ -7,6 +7,7 @@ interface propsType {
     modalOpen : boolean;
     setModalOpen : Dispatch<SetStateAction<boolean>>;
     productId : number;
+    setIsAdd : Dispatch<SetStateAction<number>>;
 }
 
 type ModalClose = ({ target }: MouseEvent) => void;
@@ -32,15 +33,16 @@ const ReviewModal = (props: propsType): JSX.Element => {
           };
     }, [modalOpen] )
 
-    const postClickHandler = () => {
+    const postClickHandler = async () => {
         if(review !== "") {
-            const response = axios.post(`${process.env.REACT_APP_SERVER_HOST}/review/write`, {
+            const response: AxiosResponse<any> = await axios.post(`${process.env.REACT_APP_SERVER_HOST}/review/write`, {
                 "productId" : props.productId,
                 "content" : review,
                 "nickname" : "이름",
                 "checkTypes" : types
             });
             setModalOpen(false);
+            props.setIsAdd(response.data.id);
         } else {
             alert("리뷰를 입력해주세요.");
         }

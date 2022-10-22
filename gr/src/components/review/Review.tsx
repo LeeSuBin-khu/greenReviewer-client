@@ -21,6 +21,7 @@ const Review = (props: {
   const [reviewList, setReviewList] = useState<Data[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [reviewNum, setReviewNum] = useState<number>(0);
+  const [isAdd, setIsAdd] = useState<number>(0);
 
   const params = useParams();
 
@@ -36,7 +37,7 @@ const Review = (props: {
       setReviewList(response.data);
     };
     fetchApi();
-  }, [modalOpen, currentPage]);
+  }, [isAdd, currentPage]);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -47,7 +48,7 @@ const Review = (props: {
       props.setReviewUpdate(response.data.reviewer);
     };
     fetchApi();
-  }, [modalOpen]);
+  }, [isAdd]);
 
   return (
     <>
@@ -95,6 +96,7 @@ const Review = (props: {
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         productId={parseInt(params.id as string)}
+        setIsAdd={setIsAdd}
       />
       <Pagination
         postsPerPage={postsPerPage}
