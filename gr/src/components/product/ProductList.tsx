@@ -93,6 +93,7 @@ const ProductList: React.FC = () => {
                   </div>
                   <div onClick={onScroll}>
                     <Pagination
+                      isAdd={-1}
                       postsPerPage={postsPerPage}
                       totalPosts={totalProductCnt}
                       paginate={setCurrentPage}

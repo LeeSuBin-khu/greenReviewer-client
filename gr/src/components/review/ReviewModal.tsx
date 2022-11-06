@@ -92,7 +92,7 @@ const ReviewModal = (props: propsType): JSX.Element => {
     <>
       {modalOpen ? (
         <div className="reviewModal-bg font-18">
-          <div className="reviewModal" ref={modalRef}>
+          <div className="reviewModal" ref={modalRef} style={{ position: "relative" }}>
             <div className="reviewModal-contents">
               <div
                 className="font-20 font-bold color-green"
@@ -121,8 +121,8 @@ const ReviewModal = (props: propsType): JSX.Element => {
               >
                 리뷰
               </div>
-              <div style={{ position: "relative" }}>
-                <input
+              <div>
+                <textarea
                   className="reviewInput-review-input"
                   onChange={reviewChangeHandler}
                   placeholder="리뷰를 입력해주세요."
@@ -132,11 +132,15 @@ const ReviewModal = (props: propsType): JSX.Element => {
                   onClick={postClickHandler}
                   style={{
                     position: "absolute",
-                    top: "15px",
-                    left: "250px",
-                    backgroundColor: "transparent",
+                    top: "450px",
+                    left: "calc( (100% - 60px)/2 )",
+                    backgroundColor: "#195b3f",
                     border: "none",
                     cursor: "pointer",
+                    borderRadius: "30px",
+                    color: "white",
+                    width: "60px",
+                    height: "30px",
                   }}
                 >
                   작성

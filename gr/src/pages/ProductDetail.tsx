@@ -20,18 +20,24 @@ import "../assets/css/statistics.css";
 import ProductView from "../components/product/ProductView";
 import Review from "../components/review/Review";
 import StatisticsMain from "../components/statistics/Main";
+import { FiArrowUpCircle } from "react-icons/fi";
 
 const Detail: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [reviewUpdate, setReviewUpdate] = useState<number>(0);
   return (
     <div className="product-detail-container">
+      <a id="product-main"></a>
       <ProductView loading={loading} setLoading={setLoading} />
       {!loading && (
-        <>
+        <div style={{position: 'relative'}}>
           <StatisticsMain reviewUpdate={reviewUpdate} />
-          <Review setReviewUpdate={setReviewUpdate} />
-        </>
+          <a id="review"></a>
+          <Review setReviewUpdate={setReviewUpdate}/>
+          <a href="#">
+            <FiArrowUpCircle style={{ color: 'gray', opacity: '50%', position: 'absolute', marginTop: '200px', left: '50%' }} size={30}/>
+          </a>
+        </div>
       )}
     </div>
   );

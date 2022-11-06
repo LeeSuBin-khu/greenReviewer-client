@@ -114,11 +114,13 @@ const Review = (props: {
             productId={parseInt(params.id as string)}
             setIsAdd={setIsAdd}
           />
+          {reviewList.length !== 0 &&
           <Pagination
+            isAdd={isAdd}
             postsPerPage={postsPerPage}
             totalPosts={reviewNum}
             paginate={setCurrentPage}
-          />
+          />}
         </div>
       )}
     </>

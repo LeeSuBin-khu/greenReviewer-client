@@ -56,10 +56,13 @@
 .reviewInput-review-input {
   box-sizing: border-box;
   width: 300px;
-  height: 50px;
+  height: 100px;
   border: 1px solid #195b3f;
-  border-radius: 30px;
+  border-radius: 10px;
   padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 20px;
+  resize: none;
 }
 
 .reviewInput-review-button {
