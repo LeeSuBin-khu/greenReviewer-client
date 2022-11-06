@@ -17,7 +17,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import useScroll from "../../hooks/useScroll";
 
 //pagination style
 const PageUl = styled.ul`

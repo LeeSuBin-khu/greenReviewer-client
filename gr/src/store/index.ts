@@ -28,12 +28,14 @@ export interface ProductState {
 
 export interface IProductState {
   product: ProductState[]; // 상품 정보가 담긴 array
-  keyword: string;
+  keyword: string; // 검색 키워드
+  current: number; // 현재 페이지
 }
 
 const initialProductState: IProductState = {
   product: [],
   keyword: "",
+  current: 1 
 };
 
 const productSlice = createSlice({
@@ -46,6 +48,9 @@ const productSlice = createSlice({
     setKeyword(state, action) {
       state.keyword = action.payload;
     },
+    setCurrent(state, action) {
+      state.current = action.payload;
+    }
   },
 });
 

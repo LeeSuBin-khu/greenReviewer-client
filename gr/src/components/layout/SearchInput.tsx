@@ -16,16 +16,19 @@
 
 import React, { useRef } from "react";
 import search from "../../assets/svg/search.svg";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { productActions } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput: React.FC = () => {
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const searchHandler = async () => {
     dispatch(productActions.setKeyword(inputRef.current?.value));
+    dispatch(productActions.setCurrent(1));
+    navigate("/");
   };
 
   return (

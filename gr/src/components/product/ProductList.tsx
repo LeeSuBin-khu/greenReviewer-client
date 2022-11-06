@@ -39,9 +39,11 @@ const ProductList: React.FC = () => {
   );
   const searchKeyword = useSelector((state: Product) => state.product.keyword);
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const currentPage = useSelector((state: Product) => state.product.current);
+  const setCurrentPage = (cur: number) => {
+    dispatch(productActions.setCurrent(cur));
+  }
 
-  const postsPerPage = 15;
   const [totalProduct, setTotalProduct] = useState<number>(1000);
 
   useEffect(() => {
@@ -68,6 +70,7 @@ const ProductList: React.FC = () => {
 
   useEffect(() => {
     const getProductList = async () => {
+      
       await axios
         .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
           params: {

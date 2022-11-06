@@ -17,6 +17,7 @@
 import React, { useEffect, useState } from "react";
 import { ProductState } from "../../store";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 interface ICheckList {
   id: number;
@@ -26,6 +27,7 @@ interface ICheckList {
 const ProductCard = (props: ProductState): JSX.Element => {
   const [bgColor, setBgColor] = useState<String>();
   const navigate = useNavigate();
+  const productList = useSelector((state: any) => state.product.product);
 
   /* 친환경적, 그린워싱 위험도를 표현하기 위해 상품의 리뷰를 파악함
   리뷰의 개수의 절반 초과가 그린워싱 위험리뷰라면 빨간색으로 표현
@@ -43,7 +45,7 @@ const ProductCard = (props: ProductState): JSX.Element => {
     } else {
       setBgColor("bg-gray");
     }
-  }, []);
+  }, [productList]);
 
   const clickHandler = (id: number) => {
     navigate(`/detail/${id}`);
