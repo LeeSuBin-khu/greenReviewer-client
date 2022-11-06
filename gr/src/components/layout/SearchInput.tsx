@@ -25,19 +25,7 @@ const SearchInput: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const searchHandler = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
-        params: {
-          q: inputRef.current?.value,
-          page: 1,
-          size: 100,
-        },
-      })
-      .then((res) => {
-        dispatch(productActions.setKeyword(inputRef.current?.value));
-        dispatch(productActions.setProductList(res.data));
-      })
-      .catch((err) => console.log(err));
+    dispatch(productActions.setKeyword(inputRef.current?.value));
   };
 
   return (

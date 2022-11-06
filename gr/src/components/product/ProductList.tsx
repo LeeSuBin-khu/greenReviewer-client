@@ -42,7 +42,7 @@ const ProductList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const postsPerPage = 15;
-  const totalProductCnt = 225;
+  const [totalProduct, setTotalProduct] = useState<number>(1000);
 
   useEffect(() => {
     setLoading(true);
@@ -50,20 +50,37 @@ const ProductList: React.FC = () => {
 
   //초기에 검색어 없이 상품 api 호출
   useEffect(() => {
+    const getTotalProduct = async () => {
+      await axios
+        .get(
+          `${
+            process.env.REACT_APP_SERVER_HOST
+          }/product/list?q=${searchKeyword}&page=${0}&size=${500}`
+        )
+        .then(async (res: AxiosResponse) => {
+          console.log(res.data.length);
+          setTotalProduct(res.data.length);
+        })
+        .catch((err: AxiosError) => console.log(err));
+    };
+    getTotalProduct();
+  }, [searchKeyword]);
+
+  useEffect(() => {
     const getProductList = async () => {
       await axios
         .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
           params: {
             q: searchKeyword,
-            page: currentPage,
-            size: postsPerPage,
+            page: currentPage - 1,
+            size: 10,
           },
         })
         .then((res: AxiosResponse) => {
+          console.log(res);
           dispatch(productActions.setProductList(res.data));
           setLoading(false);
-        })
-        .catch((err: AxiosError) => console.log(err));
+        });
     };
     getProductList();
   }, [currentPage, searchKeyword]);
@@ -91,11 +108,12 @@ const ProductList: React.FC = () => {
                       />
                     ))}
                   </div>
-                  <div onClick={onScroll}>
+                  <div>
                     <Pagination
+                      onScroll={onScroll}
                       isAdd={-1}
-                      postsPerPage={postsPerPage}
-                      totalPosts={totalProductCnt}
+                      postsPerPage={10}
+                      totalPosts={totalProduct}
                       paginate={setCurrentPage}
                     />
                   </div>
