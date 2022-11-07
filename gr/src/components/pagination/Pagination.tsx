@@ -17,6 +17,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 //pagination style
 const PageUl = styled.ul`
@@ -28,6 +29,10 @@ const PageUl = styled.ul`
   padding: 1px;
   margin-top: 50px;
 `;
+
+const PageScroll = styled.div`
+  display: inline-block;
+`
 
 const PageLi = styled.li`
   display: inline-block;
@@ -84,6 +89,8 @@ const Pagination = ({
   const [cur, setCur] = useState(1);
   const [curPoint, setCurPoint] = useState(0);
 
+  const currentPage = useSelector((state: any) => state.product.current);
+
   let j: number = -1;
   for (let i: number = 0; i < Math.ceil(totalPosts / postsPerPage); i++) {
     if (i % postsPerPage === 0) {
@@ -91,6 +98,11 @@ const Pagination = ({
       j++;
     }
     pageList[j].push(i + 1);
+  }
+
+  // 다른 페이지에서 다시 검색했을 경우
+  if (currentPage !== cur && isAdd === -1) {
+    setCur(1);
   }
 
   useEffect(() => {
@@ -102,21 +114,23 @@ const Pagination = ({
     <div>
       <nav>
         <PageUl className="pagination" style={{ position: "relative" }}>
-          <AiOutlineLeft
-            style={{
-              position: "absolute",
-              top: "1px",
-              left: "200px",
-              color: curPoint !== 0 ? "gray" : "rgb(0, 0, 0, 0.3)",
-            }}
-            onClick={() => {
-              if (curPoint !== 0) {
-                setCurPoint((i) => i - 1);
-                setCur((cur) => (cur = curPoint * postsPerPage));
-                paginate(curPoint * postsPerPage);
-              }
-            }}
-          />
+          {curPoint !== 0 &&
+            <PageScroll onClick={onScroll}>
+              <AiOutlineLeft
+                style={{
+                  position: "absolute",
+                  top: "1px",
+                  left: "200px",
+                  color: curPoint !== 0 ? "gray" : "rgb(0, 0, 0, 0.3)",
+                }}
+                onClick={() => {
+                  setCurPoint((i) => i - 1);
+                  setCur((cur) => (cur = curPoint * postsPerPage));
+                  paginate(curPoint * postsPerPage);
+                }}
+              />
+            </PageScroll>
+          }
           {pageList.length !== 0 &&
             pageList[curPoint].map((number) =>
               isAdd !== -1 ? (
@@ -138,14 +152,14 @@ const Pagination = ({
                   </PageLi>
                 </PageA>
               ) : (
-                <PageLi
-                  key={number}
-                  onClick={() => {
-                    paginate(number);
-                    setCur(number);
-                  }}
-                >
-                  <div onClick={onScroll}>
+                <PageScroll onClick={onScroll}>
+                  <PageLi
+                    key={number}
+                    onClick={() => {
+                      paginate(number);
+                      setCur(number);
+                    }}
+                  >
                     <PageSpan>
                       {number !== cur ? (
                         number
@@ -153,27 +167,32 @@ const Pagination = ({
                         <span style={{ fontWeight: "800" }}>{number}</span>
                       )}
                     </PageSpan>
-                  </div>
-                </PageLi>
+                  </PageLi>
+                </PageScroll>
               )
             )}
-          <AiOutlineRight
-            style={{
-              position: "absolute",
-              top: "1px",
-              right: "200px",
-              color:
-                curPoint !== pageList.length - 1 ? "gray" : "rgb(0, 0, 0, 0.3)",
-            }}
-            onClick={() => {
-              if (curPoint !== pageList.length - 1) {
-                setCurPoint((i) => i + 1);
-                setCur(postsPerPage * (curPoint + 1) + 1);
-                paginate(postsPerPage * (curPoint + 1) + 1);
-              }
-            }}
-          />
+          {pageList.length !== 1 && curPoint !== pageList.length - 1 &&
+            <PageScroll onClick={onScroll}>
+              <AiOutlineRight
+                style={{
+                  position: "absolute",
+                  top: "1px",
+                  right: "200px",
+                  color:
+                    curPoint !== pageList.length - 1 ? "gray" : "rgb(0, 0, 0, 0.3)",
+                }}
+                onClick={() => {
+                  if (curPoint !== pageList.length - 1) {
+                    setCurPoint((i) => i + 1);
+                    setCur(postsPerPage * (curPoint + 1) + 1);
+                    paginate(postsPerPage * (curPoint + 1) + 1);
+                  }
+                }}
+              />
+            </PageScroll>
+          }
         </PageUl>
+
       </nav>
     </div>
   );

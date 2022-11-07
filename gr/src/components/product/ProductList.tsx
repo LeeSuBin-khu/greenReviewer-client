@@ -50,17 +50,19 @@ const ProductList: React.FC = () => {
     setLoading(true);
   }, [searchKeyword]);
 
-  //초기에 검색어 없이 상품 api 호출
+  // 상품 총 개수 확인
   useEffect(() => {
     const getTotalProduct = async () => {
       await axios
         .get(
-          `${
-            process.env.REACT_APP_SERVER_HOST
-          }/product/list?q=${searchKeyword}&page=${0}&size=${500}`
-        )
+          `${process.env.REACT_APP_SERVER_HOST
+          }/product/size`
+          , {
+            params: {
+              q: searchKeyword
+            }
+          })
         .then(async (res: AxiosResponse) => {
-          console.log(res.data.length);
           setTotalProduct(res.data.length);
         })
         .catch((err: AxiosError) => console.log(err));
@@ -70,7 +72,7 @@ const ProductList: React.FC = () => {
 
   useEffect(() => {
     const getProductList = async () => {
-      
+
       await axios
         .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
           params: {
@@ -80,7 +82,6 @@ const ProductList: React.FC = () => {
           },
         })
         .then((res: AxiosResponse) => {
-          console.log(res);
           dispatch(productActions.setProductList(res.data));
           setLoading(false);
         });
