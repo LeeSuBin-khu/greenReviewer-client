@@ -48,7 +48,9 @@ const Review = (props: {
   useEffect(() => {
     const fetchApi = async () => {
       const response: AxiosResponse<any> = await axios.get(
-        `${process.env.REACT_APP_SERVER_HOST}/review/list/${params.id}?page=${currentPage - 1}&size=${postsPerPage}`
+        `${process.env.REACT_APP_SERVER_HOST}/review/list/${params.id}?page=${
+          currentPage - 1
+        }&size=${postsPerPage}`
       );
       setReviewList(response.data);
     };
@@ -114,13 +116,14 @@ const Review = (props: {
             productId={parseInt(params.id as string)}
             setIsAdd={setIsAdd}
           />
-          {reviewList.length !== 0 &&
-          <Pagination
-            isAdd={isAdd}
-            postsPerPage={postsPerPage}
-            totalPosts={reviewNum}
-            paginate={setCurrentPage}
-          />}
+          {reviewList.length !== 0 && (
+            <Pagination
+              isAdd={isAdd}
+              postsPerPage={postsPerPage}
+              totalPosts={reviewNum}
+              paginate={setCurrentPage}
+            />
+          )}
         </div>
       )}
     </>

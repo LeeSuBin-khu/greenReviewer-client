@@ -32,7 +32,7 @@ const PageUl = styled.ul`
 
 const PageScroll = styled.div`
   display: inline-block;
-`
+`;
 
 const PageLi = styled.li`
   display: inline-block;
@@ -114,7 +114,7 @@ const Pagination = ({
     <div>
       <nav>
         <PageUl className="pagination" style={{ position: "relative" }}>
-          {curPoint !== 0 &&
+          {curPoint !== 0 && (
             <PageScroll onClick={onScroll}>
               <AiOutlineLeft
                 style={{
@@ -130,7 +130,7 @@ const Pagination = ({
                 }}
               />
             </PageScroll>
-          }
+          )}
           {pageList.length !== 0 &&
             pageList[curPoint].map((number) =>
               isAdd !== -1 ? (
@@ -171,7 +171,7 @@ const Pagination = ({
                 </PageScroll>
               )
             )}
-          {pageList.length !== 1 && curPoint !== pageList.length - 1 &&
+          {pageList.length !== 1 && curPoint !== pageList.length - 1 && (
             <PageScroll onClick={onScroll}>
               <AiOutlineRight
                 style={{
@@ -179,7 +179,9 @@ const Pagination = ({
                   top: "1px",
                   right: "200px",
                   color:
-                    curPoint !== pageList.length - 1 ? "gray" : "rgb(0, 0, 0, 0.3)",
+                    curPoint !== pageList.length - 1
+                      ? "gray"
+                      : "rgb(0, 0, 0, 0.3)",
                 }}
                 onClick={() => {
                   if (curPoint !== pageList.length - 1) {
@@ -190,9 +192,8 @@ const Pagination = ({
                 }}
               />
             </PageScroll>
-          }
+          )}
         </PageUl>
-
       </nav>
     </div>
   );

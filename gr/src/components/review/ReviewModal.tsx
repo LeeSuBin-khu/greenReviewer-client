@@ -27,10 +27,10 @@ import axios, { AxiosResponse } from "axios";
 import { useFetch } from "../../hooks/useFetch";
 
 interface propsType {
-    modalOpen : boolean;
-    setModalOpen : Dispatch<SetStateAction<boolean>>;
-    productId : number;
-    setIsAdd : Dispatch<SetStateAction<number>>;
+  modalOpen: boolean;
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
+  productId: number;
+  setIsAdd: Dispatch<SetStateAction<number>>;
 }
 
 type ModalClose = ({ target }: MouseEvent) => void;
@@ -61,20 +61,23 @@ const ReviewModal = (props: propsType): JSX.Element => {
     };
   }, [modalOpen]);
 
-    const postClickHandler = async () => {
-        if(review !== "") {
-            const response: AxiosResponse<any> = await axios.post(`${process.env.REACT_APP_SERVER_HOST}/review/write`, {
-                "productId" : props.productId,
-                "content" : review,
-                "nickname" : "이름",
-                "checkTypes" : types
-            });
-            setModalOpen(false);
-            props.setIsAdd(response.data.id);
-        } else {
-            alert("리뷰를 입력해주세요.");
+  const postClickHandler = async () => {
+    if (review !== "") {
+      const response: AxiosResponse<any> = await axios.post(
+        `${process.env.REACT_APP_SERVER_HOST}/review/write`,
+        {
+          productId: props.productId,
+          content: review,
+          nickname: "이름",
+          checkTypes: types,
         }
-    };
+      );
+      setModalOpen(false);
+      props.setIsAdd(response.data.id);
+    } else {
+      alert("리뷰를 입력해주세요.");
+    }
+  };
 
   const reviewChangeHandler: ReviewInput = ({ target }) => {
     setReview((target as HTMLInputElement).value);
@@ -82,7 +85,7 @@ const ReviewModal = (props: propsType): JSX.Element => {
 
   const typeChangeHandler: TypeInput = () => {
     const tempList: number[] = [];
-    typeRef.current.map( (type) => {
+    typeRef.current.map((type) => {
       type.checked && tempList.push(parseInt(type.value));
     });
     setTypes(tempList);
@@ -92,7 +95,11 @@ const ReviewModal = (props: propsType): JSX.Element => {
     <>
       {modalOpen ? (
         <div className="reviewModal-bg font-18">
-          <div className="reviewModal" ref={modalRef} style={{ position: "relative" }}>
+          <div
+            className="reviewModal"
+            ref={modalRef}
+            style={{ position: "relative" }}
+          >
             <div className="reviewModal-contents">
               <div
                 className="font-20 font-bold color-green"

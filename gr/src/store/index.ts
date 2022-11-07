@@ -35,7 +35,7 @@ export interface IProductState {
 const initialProductState: IProductState = {
   product: [],
   keyword: "",
-  current: 1 
+  current: 1,
 };
 
 const productSlice = createSlice({
@@ -50,7 +50,7 @@ const productSlice = createSlice({
     },
     setCurrent(state, action) {
       state.current = action.payload;
-    }
+    },
   },
 });
 

@@ -45,10 +45,12 @@ const ProductView = ({ loading, setLoading }: IProps): JSX.Element => {
   //상품 상세 정보 api 호출
   useEffect(() => {
     const getProductDetail = async () => {
-      await axios.get(`${process.env.REACT_APP_SERVER_HOST}/product/detail/${params.id}`).then((res) => {
-        setProductDetail(res.data);
-        setLoading(false);
-      });
+      await axios
+        .get(`${process.env.REACT_APP_SERVER_HOST}/product/detail/${params.id}`)
+        .then((res) => {
+          setProductDetail(res.data);
+          setLoading(false);
+        });
     };
     getProductDetail();
   }, []);

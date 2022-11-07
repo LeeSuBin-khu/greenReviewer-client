@@ -42,7 +42,7 @@ const ProductList: React.FC = () => {
   const currentPage = useSelector((state: Product) => state.product.current);
   const setCurrentPage = (cur: number) => {
     dispatch(productActions.setCurrent(cur));
-  }
+  };
 
   const [totalProduct, setTotalProduct] = useState<number>(1000);
 
@@ -54,14 +54,11 @@ const ProductList: React.FC = () => {
   useEffect(() => {
     const getTotalProduct = async () => {
       await axios
-        .get(
-          `${process.env.REACT_APP_SERVER_HOST
-          }/product/size`
-          , {
-            params: {
-              q: searchKeyword
-            }
-          })
+        .get(`${process.env.REACT_APP_SERVER_HOST}/product/size`, {
+          params: {
+            q: searchKeyword,
+          },
+        })
         .then(async (res: AxiosResponse) => {
           setTotalProduct(res.data.length);
         })
@@ -72,7 +69,6 @@ const ProductList: React.FC = () => {
 
   useEffect(() => {
     const getProductList = async () => {
-
       await axios
         .get(`${process.env.REACT_APP_SERVER_HOST}/product/list`, {
           params: {

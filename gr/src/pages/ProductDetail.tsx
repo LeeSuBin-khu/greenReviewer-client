@@ -30,12 +30,21 @@ const Detail: React.FC = () => {
       <a id="product-main"></a>
       <ProductView loading={loading} setLoading={setLoading} />
       {!loading && (
-        <div style={{position: 'relative'}}>
+        <div style={{ position: "relative" }}>
           <StatisticsMain reviewUpdate={reviewUpdate} />
           <a id="review"></a>
-          <Review setReviewUpdate={setReviewUpdate}/>
+          <Review setReviewUpdate={setReviewUpdate} />
           <a href="#">
-            <FiArrowUpCircle style={{ color: 'gray', opacity: '50%', position: 'absolute', marginTop: '200px', left: '50%' }} size={30}/>
+            <FiArrowUpCircle
+              style={{
+                color: "gray",
+                opacity: "50%",
+                position: "absolute",
+                marginTop: "200px",
+                left: "50%",
+              }}
+              size={30}
+            />
           </a>
         </div>
       )}

@@ -28,7 +28,9 @@ export const useFetch = (url: string) => {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response: AxiosResponse<IData[]> = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/${url}`);
+      const response: AxiosResponse<IData[]> = await axios.get(
+        `${process.env.REACT_APP_SERVER_HOST}/${url}`
+      );
       setData(response.data);
     };
     fetchApi();
